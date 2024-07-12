@@ -1,3 +1,5 @@
+package features.task
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,13 +10,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.compose.currentKoinScope
 
 @Composable
-fun TaskOverview(viewModel: TaskOverviewViewModel) {
+fun TaskOverview() {
+    val viewModel = koinViewModel<TaskOverviewViewModel>()
     val viewState by viewModel.viewState.collectAsState()
-    val viewModel = getViewModel(Unit, viewModelFactory { TaskOverviewViewModel() })
 
     LaunchedEffect(viewModel) {
         viewModel.updateTasks()
@@ -26,7 +29,15 @@ fun TaskOverview(viewModel: TaskOverviewViewModel) {
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = "Task = ${viewState.tasks}"
+            text = "model.Task = ${viewState.tasks}"
         )
+    }
+}
+
+@Composable
+inline fun <reified T: ViewModel> koinViewModel(): T {
+    val scope = currentKoinScope()
+    return viewModel {
+        scope.get<T>()
     }
 }
