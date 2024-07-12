@@ -1,3 +1,5 @@
+package features.task
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,8 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import org.koin.compose.currentKoinScope
 
 @Composable
@@ -29,7 +29,7 @@ fun TaskOverview() {
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = "Task = ${viewState.tasks}"
+            text = "model.Task = ${viewState.tasks}"
         )
     }
 }
