@@ -1,4 +1,5 @@
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 // For Android emulator
-private const val HOST = "10.0.2.2"
+private const val HOST = "192.168.0.106"
 private const val PORT = "8100"
 
 data class TaskOverviewViewState(
