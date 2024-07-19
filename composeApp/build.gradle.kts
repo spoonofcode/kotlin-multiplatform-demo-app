@@ -35,7 +35,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
         }
         iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
+//            implementation(libs.ktor.client.darwin)
         }
         commonMain.dependencies {
             api(libs.koin.core)
